@@ -265,7 +265,7 @@ meta$ppm.corr = meta$ppm-mean(meta$ppm[which(meta$plot=="blank")])
 str(meta)
 
 #calculate actual time elapsed
-meta$start = as.POSIXct(meta$start, format = "%H:%M:%S")
+meta$start = as.POSIXct(meta$start, format = "%H:%M")
 meta$end = as.POSIXct(meta$end, format = "%H:%M")
 
 meta$days = (meta$end-meta$start)/(24*60*60)+1
@@ -552,7 +552,7 @@ meta$ppm.corr = meta$ppm-mean(meta$ppm[which(meta$plot=="blank")])
 str(meta)
 
 #calculate actual time elapsed
-meta$start = as.POSIXct(meta$start, format = "%H:%M:%S")
+meta$start = as.POSIXct(meta$start, format = "%H:%M")
 meta$end = as.POSIXct(meta$end, format = "%H:%M")
 
 meta$days = (meta$end-meta$start)/(24*60*60)+1

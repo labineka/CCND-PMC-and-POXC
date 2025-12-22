@@ -4,34 +4,34 @@
 
 
 
-Run1=read.csv("CCND PMC 2025 rd1 calcs full.csv")
+#Run1=read.csv("CCND PMC 2025 rd1 calcs full.csv")
 Run2=read.csv("CCND PMC 2025 rd2 calcs full.csv")
-#Run3=read.csv("CCND PMC 2025 rd3 calcs full.csv")
-#Run4=read.csv("CCND PMC 2025 rd4 calcs full.csv")
-#Run5=read.csv("CCND PMC 2025 rd5 calcs full.csv")
-#Run6=read.csv("CCND PMC 2025 rd6 calcs full.csv")
+Run3=read.csv("CCND PMC 2025 rd3 calcs full.csv")
+Run4=read.csv("CCND PMC 2025 rd4 calcs full.csv")
+Run5=read.csv("CCND PMC 2025 rd5 calcs full.csv")
+Run6=read.csv("CCND PMC 2025 rd6 calcs full.csv")
 #Run7=read.csv("CCND PMC 2025 rd7 calcs full.csv")
 #Run8=read.csv("CCND PMC 2025 rd8 calcs full.csv")
 
 trtcode = read.csv("List of samples CCND.csv") 
 str(trtcode)
-str(Run5)    
+str(Run3)    
 
 
-mergeAll=rbind(Run1,Run2)
-#,Run3,Run4,Run5,Run6,Run7,Run8
+mergeAll=rbind(Run2,Run3,Run4,Run5,Run6)
+#,,Run4,Run5,Run6,Run7,Run8
 head(mergeAll)
 mergeClean=select(mergeAll,plot,depth.cm,sample.id,ugC.g.day)
 
 
-write.csv(mergeClean, "PMC_CCND_all_calcs_10Nov25.csv",
+write.csv(mergeClean, "PMC_CCND_all_calcs_17Dec25.csv",
           row.names = FALSE)
 
 
 #### Adapting Hava's PMC variablity, and coefficient of variation (CV)
 
 #read in cleaned data from main directory 
-all.data<-read.csv("PMC_CCND_all_calcs_10Nov25.csv", stringsAsFactors = FALSE) 
+all.data<-read.csv("PMC_CCND_all_calcs_17Dec25 cleaned.csv", stringsAsFactors = FALSE) 
 
 num <- all.data$number 
 
@@ -63,7 +63,7 @@ pmc.var <- full_join(sample.id, mean.cv, by = "sample.id")
 #keep only samples that have CV > 0. 
 pmc.var <- subset(pmc.var, sample.cv > 0) 
 
-write.csv(pmc.var, "PMC_CCND_all_calcs_CV_10Nov25.csv")
+write.csv(pmc.var, "PMC_CCND_all_calcs_CV_17Dec25.csv")
 
 ##now look at the document for sampels that need to be looked into further. 
 ###example
