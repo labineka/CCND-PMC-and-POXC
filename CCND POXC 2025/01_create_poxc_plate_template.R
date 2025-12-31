@@ -31,7 +31,7 @@ library(readxl)
 # does NOT include plate header w/ numbers. DOES include 
 # row names with letters. Also includes one empty row (the one
 # below H). Should be 8 rows high and 13 columns wide.
-excel_plate_rect <- "A1:M9"
+excel_plate_rect <- "A2:M9"
 # creating an empty template section for marking bad wells 
 bad_empty_df <- data.frame(
   "letter" = LETTERS[1:8],
@@ -199,7 +199,7 @@ if (dir.exists("templates")){
 # provide the path to your excel file w/ absorbance data 
 # from the plate reader. 
 
-make_poxc_plater_temp("./raw_data/abs_20250131.xlsx")
+make_poxc_plater_temp("./raw_data/abs_20251230.xlsx")
 
 
 ## Make templates from multiple .xslx files
@@ -210,7 +210,7 @@ make_poxc_plater_temp("./raw_data/abs_20250131.xlsx")
 paths_to_abs_data <- list.files("raw_data",
                                 # pulls all files processed
                                 # winter 2025
-                                pattern = "abs_2025",
+                                pattern = "abs_20251230",
                                 full.names = TRUE)
 
 # loops through list of paths, saves templates as csv files

@@ -55,7 +55,7 @@ abs_df <- read_plates(files = tmp_paths, plate_names = pnames, well_ids_column =
          )) %>%
   filter(!is.na(bad_wells)) # drop bad wells
 abs_df <- abs_df %>% rename(plate_id = Plate)
-sample_mass <- read_csv("raw_data/poxc.soil.mass.24.csv") %>% 
+sample_mass <- read_csv("raw_data/poxc.soil.mass.25.csv") %>% 
   mutate(mass_kg = mass_g/1000) %>% 
   select(-c(mass_g)) %>% 
   rename(id = sample_id)
@@ -64,8 +64,8 @@ names <- read_csv("raw_data/CCNRD_sample names.csv") %>%
 #> sample_mass$plot<-as.character(sample_mass$plot)
 #> sample_mass$depth_cm<-as.character(sample_mass$depth_cm)
 #> names$sample.date<-as.character(names$sample.date)
-
-
+names$id<-as.character(names$id)
+sample_mass$id<-as.character(sample_mass$id)
 
 ## Subtract water blank
 
@@ -267,7 +267,9 @@ named_poxc_calc <- left_join(poxc_calc, names, by = "id") %>%
 # save
 write_csv(named_poxc_calc, glue("./results/poxc_calculations_{today}.csv"))
 
-avg_poxc_calc <- read.csv("./results/poxc_calculations_20250321.csv") %>%
+#Check doc to make sure everything is reading correctly
+#use the name of the previous document. 
+avg_poxc_calc <- read.csv("./results/poxc_calculations_20251231.csv") %>%
   group_by(sample_name) %>%
   summarise(average=mean(poxc_mg_kg))
 
